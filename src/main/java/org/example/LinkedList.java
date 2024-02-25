@@ -212,4 +212,25 @@ public class LinkedList {
 
         return temp1;
     }
+
+    public boolean hasLoop(){
+//        if (length == 0){
+//            return false;
+//        }
+//        if (length == 1){
+//            return false;
+//        }
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next!=null){
+
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
 }
