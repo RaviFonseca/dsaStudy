@@ -240,4 +240,42 @@ public class LinkedList {
         // If the loop has not been detected after the traversal, then there is no loop in the linked list
         return false;
     }
+
+    public Node findKthFromEnd(int k){
+//        Node temp1 = head;
+//        if (head == null) return null;
+//        int i =1;
+//        while (temp1.next != null){
+//            temp1 = temp1.next;
+//            i++;
+//        }
+//        int rest = i - k;
+//
+//        if(rest<0)return null;
+//        Node temp2 = head;
+//        int j =0;
+//        while (j!=rest){
+//            j++;
+//            temp2 = temp2.next;
+//        }
+//        return temp2;
+        Node slow = head;
+        Node fast = head;
+
+        // Move fast pointer k steps ahead
+        for (int i = 0; i < k; i++) {
+            if (fast == null) { // If k is out of bounds, return null
+                return null;
+            }
+            fast = fast.next; // Move the fast pointer to the next node
+        }
+
+        // Move both pointers until fast reaches the end
+        while (fast != null) {
+            slow = slow.next; // Move the slow pointer to the next node
+            fast = fast.next; // Move the fast pointer to the next node
+        }
+
+        return slow; // Return the kth node from the end (slow pointer)
+    }
 }
